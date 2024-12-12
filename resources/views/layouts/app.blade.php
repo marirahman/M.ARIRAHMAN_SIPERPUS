@@ -38,6 +38,7 @@
         </main>
     </div>
 
+    <!-- SweetAlert2 Flash Message -->
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -45,8 +46,9 @@
             showConfirmButton: false,
             timer: 3000,
         });
+
         @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type') }}";
+            var type = "{{ Session::get('alert-type', 'info') }}";
             switch (type) {
                 case 'info':
                     Toast.fire({
@@ -82,14 +84,15 @@
                     break;
             }
         @endif
+
         @if ($errors->any())
             @php $list = null; @endphp
             @foreach ($errors->all() as $error)
-                @php $list .= '<li>'.$error.'</li>'; @endphp
+                @php $list .= '<li>' . $error . '</li>'; @endphp
             @endforeach
             Swal.fire({
-                type: 'error',
-                title: "Ooops",
+                icon: 'error',
+                title: "Ooops, ada kesalahan!",
                 html: "<ul>{!! $list !!}</ul>",
             });
         @endif

@@ -3,9 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoanController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -28,6 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/books/print', [BookController::class, 'print'])->name('book.print');
     Route::get('/books/export', [BookController::class, 'export'])->name('book.export');
     Route::post('/books/import', [BookController::class, 'import'])->name('book.import');
+    // Route::get('/loans/borrow/{book}', [LoanController::class, 'borrow'])->name('loans.borrow');
+    // Route::get('/loans/return/{book}', [LoanController::class, 'return'])->name('loans.return');
+    // Route::get('/loans', [LoanController::class, 'index'])->name('loans.index');
+    // Route::get('/loans/borrow/{bookId}', [LoanController::class, 'borrow'])->name('loans.borrow');
+    Route::get('/loans', [LoanController::class, 'index'])->name('loans.index');
+    Route::get('/loans/borrow/{bookId}', [LoanController::class, 'borrow'])->name('loans.borrow');
+    Route::get('/loans/return/{bookId}', [LoanController::class, 'return'])->name('loans.return');
+   
 });
 
 require __DIR__ . '/auth.php';

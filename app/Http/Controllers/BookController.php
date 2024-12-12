@@ -14,10 +14,12 @@ use Maatwebsite\Excel\Facades\Excel;
 class BookController extends Controller
 {
     public function index()
-    {
-        $data['books'] = Book::with('bookshelf')->get();
-        return view('books.index', $data);
-    }
+{
+    $books = Book::paginate(10);
+    return view('books.index', compact('books')); // setelah diperbaiki
+}
+
+
 
     public function create()
     {

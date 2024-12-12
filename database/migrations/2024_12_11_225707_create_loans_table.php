@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('user_id');
-            $table->dateTime('borrow_date')->nullable();
-            $table->dateTime('return_date')->nullable();
+            $table->foreignId('book_id')->constrained();  
+            $table->foreignId('user_id')->constrained();  
+            $table->date('borrow_date');
+            $table->date('return_date')->nullable();
             $table->timestamps();
-
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
+    
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('loans');
     }

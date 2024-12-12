@@ -11,7 +11,7 @@
     <h1 style="text-align: center;">Data Buku</h1>
     <p style="text-align: center;">Laporan Data Buku Tahun 2024</p>
     <br />
-    <table border="1" style="border-collapse: collapse; align-content: center;">
+    <table border="1" style="border-collapse: collapse; align-content: center; width: 100%;">
         <thead>
             <tr>
                 <th>NO</th>
